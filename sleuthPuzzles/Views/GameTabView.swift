@@ -10,7 +10,7 @@ import SwiftData
 
 struct GameTabView: View {
     @Environment(\.modelContext) private var context
-    @State var gameStatus: UserGameStatusModel?
+    @State var gameStatus: UserGameStatusModel
     @State var isShowingGameInfo = false
     @EnvironmentObject var model: GameModel
     @Query private var userItems: [UserItemsInBag]
@@ -24,7 +24,7 @@ struct GameTabView: View {
     var body: some View {
         TabView {
             if gameID == "frozen_wizard" {
-                WizardMapView(gameStatus: gameStatus)
+                WizardMapView(gameStatus: $gameStatus)
                     .tabItem {
                         Label("Map", systemImage: "map.fill")
                     }
@@ -36,7 +36,7 @@ struct GameTabView: View {
                     }
             }
             BagView(gameID: model.puzzle.id)
-                .badge(gameStatus?.items?.count ?? 0)
+                .badge(gameStatus.items?.count ?? 0)
                 .tabItem {
                     Label("Bag", systemImage: "bag.fill")
                 }
@@ -52,11 +52,11 @@ struct GameTabView: View {
             }else if gameID == "time_traveler" {
                 model.puzzle = TimeTravelerDataModel()
             }
-            if gameStatus == nil {
+            if gameStatus.puzzleId == "" {
                 print("Create new game")
                 let newGame = UserGameStatusModel(game: model)// UserGameStatusModel(gameID: "frozen_wizard", timeLeft: 500)
                 gameStatus = newGame
-                context.insert(gameStatus!)
+                context.insert(gameStatus)
                 do {
                     try context.save()
                 } catch {
@@ -64,20 +64,19 @@ struct GameTabView: View {
                 }
                 //                try? context.save()
             }else {
-                print("Exisiting game! \(gameStatus!.timeLeft)")
-                print(gameStatus!.puzzleId)
-                model.timeLeft = gameStatus!.timeLeft
+                print("Exisiting game! \(gameStatus.timeLeft)")
+                print(gameStatus.puzzleId)
+                model.timeLeft = gameStatus.timeLeft
             }
             //            model.test() //= WizardDataModel()
             isShowingGameInfo.toggle()
         }
         .onDisappear{
-#if os(visionOS)
             dismissWindow(id: "TimerView")
-#endif
+            dismissWindow(id: "ClueDetailView")
             print("Time Left: \(model.timeLeft)")
-            gameStatus!.timeLeft = model.timeLeft
-            print("Saving: \(gameStatus!.timeLeft)")
+            gameStatus.timeLeft = model.timeLeft
+            print("Saving: \(gameStatus.timeLeft)")
             do {
                 try context.save()
             } catch {
@@ -93,7 +92,7 @@ struct GameTabView: View {
                     .font(.body)
                 Spacer()
                 HStack {
-                    if gameStatus?.timeLeft != 0 {
+                    if gameStatus.timeLeft != 0 {
                         Button(action: {
                             print("Start")
                             isShowingGameInfo.toggle()
@@ -102,16 +101,16 @@ struct GameTabView: View {
                             openWindow(id: "TimerView")
 #endif
                         }, label: {
-                            Text(gameStatus?.timeLeft == model.puzzle.timeInGame ? "Start Game" : "Resume")
+                            Text(gameStatus.timeLeft == model.puzzle.timeInGame ? "Start Game" : "Resume")
                         })
                     }
-                    if gameStatus?.timeLeft != model.puzzle.timeInGame {
+                    if gameStatus.timeLeft != model.puzzle.timeInGame {
                         Button(action: {
                             isShowingGameInfo.toggle()
-                            gameStatus!.timeLeft = model.puzzle.timeInGame //= UserGameStatusModel(game: model)
+                            gameStatus.timeLeft = model.puzzle.timeInGame //= UserGameStatusModel(game: model)
                             model.timeLeft = model.puzzle.timeInGame
                             model.startTimer()
-                            print("Resaving time \(gameStatus!.timeLeft)")
+                            print("Resaving time \(gameStatus.timeLeft)")
                             do {
                                 try context.save()
                             } catch {
@@ -154,7 +153,7 @@ struct GameTabView: View {
 }
 
 #Preview {
-    GameTabView(gameID: "frozen_wizard")
+    GameTabView(gameStatus: UserGameStatusModel(game: GameModel(puzzleID: "frozen_wizard")), gameID: "frozen_wizard")
         .environmentObject(GameModel())
         .modelContainer(GamesPreviewContainer)
 }

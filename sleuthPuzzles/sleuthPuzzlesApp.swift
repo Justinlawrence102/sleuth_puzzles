@@ -31,7 +31,7 @@ struct sleuthPuzzlesApp: App {
                 .environmentObject(model)
         }
         .modelContainer(sharedModelContainer)
-#if os(visionOS)
+//#if os(visionOS)
         WindowGroup(id: "TimerView") {
             TimerView()
                 .environmentObject(model)
@@ -46,7 +46,7 @@ struct sleuthPuzzlesApp: App {
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 300, height: 300)
-#endif
+//#endif
     }
 }
 

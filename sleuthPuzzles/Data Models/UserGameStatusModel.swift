@@ -18,6 +18,11 @@ import SwiftData
     @Relationship(deleteRule: .cascade)
     var puzzlesSolved:  [UserPuzzleSolved]?
     
+    init() {
+        self.puzzleId = ""
+        timeLeft = 0
+    }
+    
     init(gameID: String, timeLeft: Int) {
         self.puzzleId = gameID
         self.timeLeft = timeLeft

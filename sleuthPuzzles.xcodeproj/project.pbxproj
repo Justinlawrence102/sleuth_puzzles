@@ -19,6 +19,8 @@
 		981513012B8125AD00156731 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981513002B8125AD00156731 /* TimerView.swift */; };
 		981513042B81428400156731 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981513032B81428400156731 /* GameModel.swift */; };
 		981513062B815B8100156731 /* UserGameStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981513052B815B8100156731 /* UserGameStatusModel.swift */; };
+		9826D3332B8EB1C000624899 /* CabinetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826D3322B8EB1C000624899 /* CabinetView.swift */; };
+		9826D3352B8EB6D200624899 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826D3342B8EB6D200624899 /* TableView.swift */; };
 		98B1CB612B826A7C0091F5BB /* TimeTravelerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B1CB602B826A7C0091F5BB /* TimeTravelerDataModel.swift */; };
 		98B1CB632B826B1C0091F5BB /* TimeTravlerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B1CB622B826B1C0091F5BB /* TimeTravlerMapView.swift */; };
 		98B1CB652B82932A0091F5BB /* ClueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B1CB642B82932A0091F5BB /* ClueDetailView.swift */; };
@@ -40,6 +42,8 @@
 		981513022B81278300156731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		981513032B81428400156731 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		981513052B815B8100156731 /* UserGameStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGameStatusModel.swift; sourceTree = "<group>"; };
+		9826D3322B8EB1C000624899 /* CabinetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetView.swift; sourceTree = "<group>"; };
+		9826D3342B8EB6D200624899 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		98B1CB602B826A7C0091F5BB /* TimeTravelerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravelerDataModel.swift; sourceTree = "<group>"; };
 		98B1CB622B826B1C0091F5BB /* TimeTravlerMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTravlerMapView.swift; sourceTree = "<group>"; };
 		98B1CB642B82932A0091F5BB /* ClueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDetailView.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				981512FC2B81244700156731 /* WizardMapView.swift */,
+				9826D3322B8EB1C000624899 /* CabinetView.swift */,
+				9826D3342B8EB6D200624899 /* TableView.swift */,
 			);
 			path = FrozenWizard;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				981512F72B81241100156731 /* WizardDataModel.swift in Sources */,
+				9826D3352B8EB6D200624899 /* TableView.swift in Sources */,
 				981512F62B81241100156731 /* ClueObject.swift in Sources */,
 				981512FF2B81244700156731 /* GameTabView.swift in Sources */,
 				981513042B81428400156731 /* GameModel.swift in Sources */,
@@ -217,6 +224,7 @@
 				981512E72B8123EB00156731 /* HomeView.swift in Sources */,
 				981513062B815B8100156731 /* UserGameStatusModel.swift in Sources */,
 				981512E52B8123EB00156731 /* sleuthPuzzlesApp.swift in Sources */,
+				9826D3332B8EB1C000624899 /* CabinetView.swift in Sources */,
 				981513012B8125AD00156731 /* TimerView.swift in Sources */,
 				981512FA2B81243400156731 /* BagView.swift in Sources */,
 			);
@@ -373,11 +381,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinLawrence.sleuthPuzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 7;
 			};
 			name = Debug;
 		};
@@ -415,11 +423,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.justinLawrence.sleuthPuzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 7;
 			};
 			name = Release;
 		};

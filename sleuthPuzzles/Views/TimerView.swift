@@ -13,13 +13,23 @@ struct TimerView: View {
     var body: some View {
         VStack {
             Text("Time Remaining")
-                .font(.system(.extraLargeTitle2, design: .rounded))
+#if os(macOS)
+                .font(.largeTitle)
+#else
+                .font(.extraLargeTitle2)
+#endif
+                .fontDesign(.rounded)
                 .fontWeight(.semibold)
                 .neon(color: Color("Orange"))
             
             if let timer = model.timer {
-            Label("\(timeLeft)", systemImage: "clock.fill")
-                .font(.system(.extraLargeTitle2))
+                Label("\(timeLeft)", systemImage: "clock.fill")
+#if os(macOS)
+                    .font(.largeTitle)
+#else
+                    .font(.extraLargeTitle2)
+#endif
+                    .fontDesign(.rounded)
                     .onReceive(timer) { _ in
                         if model.timeLeft > 0 {
                             model.timeLeft -= 1

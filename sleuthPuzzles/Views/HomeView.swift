@@ -28,11 +28,21 @@ struct HomeView: View {
                     //            Spacer()
                     VStack {
                         Text("Sleuth Escape Rooms")
-                            .font(.system(.extraLargeTitle2, design: .rounded))
+#if os(macOS)
+                            .font(.largeTitle)
+#else
+                            .font(.extraLargeTitle2)
+#endif
+                            .fontDesign(.rounded)
                             .fontWeight(.semibold)
                             .neon(color: Color("Orange"))
                         Image(systemName: "key")
-                            .font(.system(.extraLargeTitle, design: .rounded))
+#if os(macOS)
+                            .font(.largeTitle)
+#else
+                            .font(.extraLargeTitle2)
+#endif
+                            .fontDesign(.rounded)
                             .fontWeight(.regular)
                             .neon(color: .yellow)
                     }
@@ -43,7 +53,7 @@ struct HomeView: View {
                     Text("Select a game:")
                     
                     NavigationLink(destination: {
-                        GameTabView(gameStatus: userStatus.first(where: {$0.puzzleId == "frozen_wizard"}), gameID: "frozen_wizard")
+                        GameTabView(gameStatus: userStatus.first(where: {$0.puzzleId == "frozen_wizard"}) ?? UserGameStatusModel(), gameID: "frozen_wizard")
                     }, label: {
                         Text("Frozen Wizard")
                             .frame(width: 300, height: 55)
@@ -52,7 +62,7 @@ struct HomeView: View {
                     .cornerRadius(28)
                     
                     NavigationLink(destination: {
-                        GameTabView(gameStatus: userStatus.first(where: {$0.puzzleId == "time_traveler"}), gameID: "time_traveler")
+                        GameTabView(gameStatus: userStatus.first(where: {$0.puzzleId == "time_traveler"}) ?? UserGameStatusModel(), gameID: "time_traveler")
                     }, label: {
                         Text("Time Traveler")
                             .frame(width: 300, height: 55)

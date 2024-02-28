@@ -20,17 +20,18 @@ class WizardDataModel: Puzzle {
         print("Initing  Wizzard Puzzle")
 
         let wallPoster = ClueObject(id: "wall_poster", title: "Posters", imageName: "newspaper.fill", color: .green, view: PosterClueView())
+        let tableNotebook = ClueObject(id: "note_clue", title: "Notebook", imageName: "note.text", color: .orange, view: NoteCardView())
         let magicBook = ClueObject(id: "magic_book", title: "Magic Book", imageName: "book.fill", color: .orange, view: Text("BOOK!"))
         let potionBook = ClueObject(id: "potion_book", title: "Potion Book", imageName: "book.and.wrench.fill", color: .purple, view: Text("POTION!"))
-        self.clueItems = [wallPoster, magicBook, potionBook]
+        self.clueItems = [wallPoster, magicBook, potionBook, tableNotebook]
     }
     
     override func checkCodeValue(code: String, puzzleID: String, gameStatus: UserGameStatusModel?, context: ModelContext) -> Bool {
         if puzzleID == "cabinet" {
-            if code == "3-5-2-1" {
+            if code == "6-5-3-1" {
                 let newItem = UserPuzzleSolved(id: puzzleID)
                 gameStatus?.puzzlesSolved?.append(newItem)
-                if let index = gameStatus?.items?.firstIndex(where: {$0.itemID == "wall_poster"}) {
+                if let index = gameStatus?.items?.firstIndex(where: {$0.itemID == "note_clue"}) {
                     gameStatus!.items![index].hasBeenUsed = true
                 }
     
@@ -79,6 +80,14 @@ struct PosterClueView: View {
     }
 }
 
+struct NoteCardView: View {
+    var body: some View {
+        Image("NoteClue")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+    }
+}
+
 #Preview {
-    PosterClueView()
+    NoteCardView()
 }

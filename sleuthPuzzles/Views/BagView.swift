@@ -86,7 +86,11 @@ struct BaggedItemView: View {
     var body: some View {
         VStack {
             Image(systemName: item.imageName)
+#if os(macOS)
+                .font(.largeTitle)
+#else
                 .font(.extraLargeTitle)
+#endif
                 .foregroundStyle(item.color)
             Text(item.title)
                 .font(.title2)
